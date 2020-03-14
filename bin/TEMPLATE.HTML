@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+<!-- <script src ="app.js"> </script>  -->
+<style>
+.username{
+	color:#C33;
+}
+</style>
+</head>
+<body>
+<template id="tmplt">
+  <h2></h2>
+  <p></p>
+  <hr>
+</template>
+<script>
+
+
+//****commented out until i can figure out how to make it work to read the local file. 
+// var rawdata = fs.readFileSync('employee.json');
+// var arr = rawsata;
+//***
+
+var arr = [{"name":"Thomas","role":"Manager","id":"10","email":"tom@yahoo.com","office":"12"},{"name":"Collin","role":"Engineer","id":"15","email":"collin@ucsd.com","github":"cjk"},{"name":"Jim","role":"Intern","id":"66","email":"jim@ucla","college":"UCLA"}];
+
+var template = document.querySelector('#tmplt');
+for (var i = 0; i < arr.length; i++) {
+	var employee = arr[i];
+	var clone = template.content.cloneNode(true);
+	var h2 = clone.querySelectorAll('h2');
+	h2[0].className = "employeename";
+	h2[0].innerHTML = employee.name;
+    var p = clone.querySelectorAll('p');
+    p[0].innerHTML = "Role: "+employee.role+"<br>Id: "+employee.id + "<br>Email: " + employee.email + "<br>Office Number: "  + employee.office + "<br>School: " + employee.school; 
+	template.parentNode.appendChild(clone);
+}
+
+</script>
+</body>
+</html>
